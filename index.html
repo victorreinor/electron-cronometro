@@ -14,38 +14,48 @@
   <script>
     const { Timer } = require('easytimer.js');
     const timer = new Timer();
+    const electron = require('electron');
 
-    document.querySelector('#chronoExample .startButton').addEventListener('click',
-      function () {
-        timer.start();
-      }
-    );
-    document.querySelector('#chronoExample .pauseButton').addEventListener('click',
-      function () {
-        timer.pause();
-      }
-    );
-    document.querySelector('#chronoExample .stopButton').addEventListener('click',
-      function () {
-        timer.stop();
-      }
-    );
-    document.querySelector('#chronoExample .resetButton').addEventListener('click',
-      function () {
-        timer.reset();
-      }
-    );
-    timer.addEventListener('secondsUpdated', function (e) {
-      document.querySelector('#chronoExample .values').innerHTML =
-        timer.getTimeValues().toString();
+    const { ipcRenderer } = electron;
+
+    let timeUpdate;
+
+    document.querySelector('#chronoExample .startButton')
+      .addEventListener('click',
+        () => timer.start()
+      );
+
+    document.querySelector('#chronoExample .pauseButton')
+      .addEventListener('click',
+        () => timer.pause()
+      );
+
+    document.querySelector('#chronoExample .stopButton')
+      .addEventListener('click',
+        () => timer.stop()
+      );
+
+    document.querySelector('#chronoExample .resetButton')
+      .addEventListener('click',
+        () => timer.reset()
+      );
+
+    timer.addEventListener('secondsUpdated', e => {
+      timeUpdate = timer.getTimeValues().toString();
+      document.querySelector('#chronoExample .values').innerHTML = timeUpdate;
+      ipcRenderer.send('timeUpdate', timeUpdate);
     });
-    timer.addEventListener('started', function (e) {
-      document.querySelector('#chronoExample .values').innerHTML =
-        timer.getTimeValues().toString();
+
+    timer.addEventListener('started', e => {
+      timeUpdate = timer.getTimeValues().toString();
+      document.querySelector('#chronoExample .values').innerHTML = timeUpdate;
+      ipcRenderer.send('timeUpdate', timeUpdate);
     });
-    timer.addEventListener('reset', function (e) {
-      document.querySelector('#chronoExample .values').innerHTML =
-        timer.getTimeValues().toString();
+
+    timer.addEventListener('reset', e => {
+      timeUpdate = timer.getTimeValues().toString();
+      document.querySelector('#chronoExample .values').innerHTML = timeUpdate;
+      ipcRenderer.send('timeUpdate', timeUpdate);
     });
   </script>
 </body>
