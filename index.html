@@ -1,14 +1,20 @@
-<head></head>
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel='stylesheet' href='./node_modules/bootstrap/dist/css/bootstrap.min.css'>
+</head>
 
 <body>
-  <h1>Cronômetro</h1>
+  <h1 class="text-center mt-1">Cronômetro</h1>
   <div id="chronoExample">
-    <div class="values">00:00:00</div>
-    <div>
-      <button class="startButton">Iniciar</button>
-      <button class="pauseButton">Pausar</button>
-      <button class="stopButton">Parar</button>
-      <button class="resetButton">Reiniciar</button>
+    <h2 class="values text-center">00:00:00</h2>
+    <div class="container text-center">
+      <button class="startButton btn btn-primary">Iniciar</button>
+      <button class="pauseButton btn btn-success">Pausar</button>
+      <button class="stopButton btn btn-warning">Parar</button>
+      <button class="resetButton btn btn-info">Reiniciar</button>
     </div>
   </div>
   <script>
@@ -58,4 +64,6 @@
       ipcRenderer.send('timeUpdate', timeUpdate);
     });
   </script>
+  <script src="./node_modules/jquery/dist/jquery.slim.min.js"></script>
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
