@@ -13,7 +13,8 @@
     "bootstrap": "^4.3.1",
     "easytimer.js": "^3.0.1",
     "electron": "^4.0.4",
-    "jquery": "^3.3.1"
+    "jquery": "^3.3.1",
+    "windows-shortcuts": "^0.1.6"
   },
   "devDependencies": {
     "eslint": "^5.13.0",
