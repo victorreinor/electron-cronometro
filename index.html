@@ -25,25 +25,41 @@
     const { ipcRenderer } = electron;
 
     let timeUpdate;
+    let target25 = new Timer();
 
     document.querySelector('#chronoExample .startButton')
       .addEventListener('click',
-        () => timer.start()
+        () => {
+          timer.start();
+          target25.start({
+            precision: 'seconds',
+            target: { seconds: 25 },
+          });
+        }
       );
 
     document.querySelector('#chronoExample .pauseButton')
       .addEventListener('click',
-        () => timer.pause()
+        () => {
+          timer.pause();
+          target25.pause();
+        }
       );
 
     document.querySelector('#chronoExample .stopButton')
       .addEventListener('click',
-        () => timer.stop()
+        () => {
+          timer.stop();
+          target25.stop();
+        }
       );
 
     document.querySelector('#chronoExample .resetButton')
       .addEventListener('click',
-        () => timer.reset()
+        () => {
+          timer.reset();
+          target25.reset();
+        }
       );
 
     timer.addEventListener('secondsUpdated', e => {
@@ -62,6 +78,17 @@
       timeUpdate = timer.getTimeValues().toString();
       document.querySelector('#chronoExample .values').innerHTML = timeUpdate;
       ipcRenderer.send('timeUpdate', timeUpdate);
+    });
+
+    target25.addEventListener('targetAchieved', (e) => {
+      let myNotification = new Notification('Cronômetro', {
+        body: '25 Segundos!',
+      });
+
+      target25.start({
+        precision: 'seconds',
+        target: { seconds: 25 },
+      });
     });
   </script>
   <script src="./node_modules/jquery/dist/jquery.slim.min.js"></script>
