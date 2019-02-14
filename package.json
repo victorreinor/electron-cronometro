@@ -1,0 +1,21 @@
+{
+  "name": "terap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "easytimer.js": "^3.0.1",
+    "electron": "^4.0.4"
+  },
+  "devDependencies": {
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
+  }
+}
