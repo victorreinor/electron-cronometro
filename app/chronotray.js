@@ -25,8 +25,8 @@ class ChronoTray extends Tray {
       this.mainwWindow.hide();
     } else {
       this.mainwWindow.setBounds({
-        x: parseInt(x >= 400 ? x - width / 2 : x, 10),
-        y: parseInt(y >= 300 ? y - height : y, 10),
+        x: x >= 400 ? x - Math.floor(width / 2) : x,
+        y: y >= 300 ? y - height : y,
         width,
         height,
       });
