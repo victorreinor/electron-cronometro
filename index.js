@@ -4,7 +4,6 @@ const ChronoTray = require('./app/chronotray');
 
 const {
   app,
-  Menu,
   BrowserWindow,
 } = electron;
 
