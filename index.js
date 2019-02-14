@@ -20,4 +20,9 @@ app.on('ready', () => {
 
   const tray = new ChronoTray(`${__dirname}/images/robot.png`, mainwWindow);
   mainwWindow.loadURL(`file://${__dirname}/index.html`);
+  mainwWindow.on('blur', () => {
+    setTimeout(() => {
+      mainwWindow.hide();
+    }, 200);
+  });
 });
