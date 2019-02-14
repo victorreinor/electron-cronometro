@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 const electron = require('electron');
 const ChronoTray = require('./app/chronotray');
+const ws = require('windows-shortcuts');
 
 const {
   app,
@@ -28,6 +29,11 @@ app.on('ready', () => {
       mainwWindow.hide();
     }, 200);
   });
+
+  if (process.env.NODE_ENV !== 'production' && process.platform === 'win32') {
+    ws.create('%APPDATA%/Microsoft/Windows/Start Menu/Programs/Electron.lnk', process.execPath);
+    app.setAppUserModelId(process.execPath);
+  }
 });
 
 ipcMain.on('timeUpdate', (event, timeUpdate) => {
